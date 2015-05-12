@@ -1,0 +1,20 @@
+###############################
+##      ** Do Not Modify **
+##  Automatically Generated File
+##
+################################# 
+
+# These options turn off various abilities the upstream ntp server could access in ntpd
+restrict default kod nomodify notrap nopeer noquery
+restrict -6 default kod nomodify notrap nopeer noquery
+
+# Prevent any clients from attempting to sync to ntpd (they should be looking at the same ntp servers we are)
+restrict 127.0.0.1
+restrict -6 ::1
+
+# NTP servers
+<% @servers.each do |@server| -%>
+server <%= @server %>
+<% end -%>
+
+# force update 2/10/15
